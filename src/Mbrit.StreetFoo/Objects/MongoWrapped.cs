@@ -16,6 +16,9 @@ namespace Mbrit.StreetFoo
 
         internal MongoWrapped(string connString, string databaseName)
         {
+            this.ConnectionString = connString;
+            this.DatabaseName = databaseName;
+
             try
             {
                 this.Server = MongoServer.Create(connString);
