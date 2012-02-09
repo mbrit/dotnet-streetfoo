@@ -51,7 +51,7 @@ namespace Mbrit.StreetFoo.Web
             string apiKey = input.GetValueAsString("apiKey");
             if (string.IsNullOrEmpty(apiKey))
                 throw new InvalidOperationException("The 'apiKey' value was not specified in the request.");
-            ApiUser api = ApiUser.GetOrCreateApiUser(apiKey);
+            ApiUser api = ApiUser.GetOrCreateApiUser(new Guid(apiKey));
             if (api == null)
                 throw new InvalidOperationException("'api' is null.");
 

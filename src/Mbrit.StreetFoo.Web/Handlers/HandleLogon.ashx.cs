@@ -7,19 +7,15 @@ using Mbrit.StreetFoo.Entities;
 namespace Mbrit.StreetFoo.Web.Handlers
 {
     /// <summary>
-    /// Summary description for HandleRegister
+    /// Summary description for HandleLogon
     /// </summary>
-    public class HandleRegister : AjaxHandler
+    public class HandleLogon : AjaxHandler
     {
         protected override void DoRequest(ApiUser api, JsonData input, JsonData output)
         {
-            if(api == null)
-	            throw new ArgumentNullException("api");
-
             // get...
             AjaxValidator validator = new AjaxValidator();
             string username = validator.GetRequiredString(input, "username");
-            string email = validator.GetRequiredString(input, "email");
             string password = validator.GetRequiredString(input, "password");
 
             // ok?
@@ -27,17 +23,24 @@ namespace Mbrit.StreetFoo.Web.Handlers
             {
                 // get...
                 User user = User.GetByUsername(api, username);
-                if (user == null)
+                if (user != null)
                 {
-                    user = User.CreateUser(api, username, email, password);
-                    if (user == null)
-                        throw new InvalidOperationException("'user' is null.");
+                    // check...
+                    if (user.CheckPassword(password))
+                    {
+                        // create an access token...
+                        Token token = Token.CreateToken(api);
+                        if (token == null)
+                            throw new InvalidOperationException("'token' is null.");
 
-                    // set...
-                    output["userId"] = user._id;
+                        // set...
+                        output["token"] = token.TheToken;
+                    }
+                    else
+                        validator.AddError("Password is invalid.");
                 }
                 else
-                    validator.AddError("Username already in use.");
+                    validator.AddError("Username is invalid.");
             }
 
             // set...

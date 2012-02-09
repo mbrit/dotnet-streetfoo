@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Entities\ApiBoundEntity.cs" />
     <Compile Include="Entities\ApiUser.cs" />
+    <Compile Include="Entities\Token.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Objects\FooRuntime.cs" />

@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Mbrit.StreetFoo.Entities;
 
 namespace Mbrit.StreetFoo.Tests
 {
     public abstract class TestBase
     {
         public static Random Random { get; set; }
-        private static Guid ApiKey { get; set; }
+        private static ApiUser MockApiUser { get; set; }
+        internal Creator Creator { get; private set; }
+
+        protected TestBase()
+        {
+            this.Creator = new Creator(this);
+        }
 
         static TestBase()
         {
             Random = new Random();
-            ApiKey = Guid.NewGuid();
+
+            // fake...
+            MockApiUser = ApiUser.CreateMockApiUser();
         }
 
         [TestInitialize()]
@@ -24,8 +33,6 @@ namespace Mbrit.StreetFoo.Tests
             if (!(FooRuntime.IsStarted))
                 FooRuntime.Start("mongodb://StreetFooTestUser:8o9sK3X52F76jo68bPlR3nlD3E1224@staff.mongohq.com:10059/StreetFooTest");
         }
-
-
 
         internal string GetRandomId(string name)
         {
@@ -39,7 +46,23 @@ namespace Mbrit.StreetFoo.Tests
             return builder.ToString();
         }
 
-        internal void ApplyApiKey(JsonData input)
+        protected ApiUser ApiUser
+        {
+            get
+            {
+                return MockApiUser;
+            }
+        }
+
+        protected string ApiKey
+        {
+            get
+            {
+                return ApiUser.ApiKey;
+            }
+        }
+
+        protected void ApplyApiKey(JsonData input)
         {
             input["apiKey"] = ApiKey;
         }

@@ -11,13 +11,8 @@ namespace Mbrit.StreetFoo.Entities
         public string ApiKey { get; set; }
         public DateTime CreatedUtc { get; set; }
 
-        public static ApiUser GetOrCreateApiUser(string apiKey)
+        public static ApiUser GetOrCreateApiUser(Guid apiKey)
         {
-            if (apiKey == null)
-                throw new ArgumentNullException("apiKey");
-            if (apiKey.Length == 0)
-                throw new ArgumentException("'apiKey' is zero-length.");
-
             using (MongoWrapped db = FooRuntime.GetDatabase())
             {
                 try
@@ -26,7 +21,7 @@ namespace Mbrit.StreetFoo.Entities
 
                     // create...
                     ApiUser user = new ApiUser();
-                    user.ApiKey = apiKey;
+                    user.ApiKey = apiKey.ToString();
                     user.CreatedUtc = DateTime.UtcNow;
                     users.Insert(user);
 
@@ -38,6 +33,14 @@ namespace Mbrit.StreetFoo.Entities
                     throw db.WrapError(ex);
                 }
             }
+        }
+
+        public static ApiUser CreateMockApiUser()
+        {
+            ApiUser api = new ApiUser();
+            api.ApiKey = Guid.NewGuid().ToString();
+
+            return api;
         }
     }
 }

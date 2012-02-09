@@ -82,6 +82,9 @@
     </Compile>
     <Compile Include="Handlers\AjaxHandler.cs" />
     <Compile Include="Handlers\AjaxValidator.cs" />
+    <Compile Include="Handlers\HandleLogon.ashx.cs">
+      <DependentUpon>HandleLogon.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\HandleRegister.ashx.cs">
       <DependentUpon>HandleRegister.ashx</DependentUpon>
     </Compile>
@@ -98,6 +101,9 @@
       <Project>{9B5A217A-001C-4BE7-8AA3-1FEC7716735E}</Project>
       <Name>Mbrit.StreetFoo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handlers\HandleLogon.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
