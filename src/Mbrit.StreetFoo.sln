@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mbrit.StreetFoo", "Mbrit.StreetFoo\Mbrit.StreetFoo.csproj", "{9B5A217A-001C-4BE7-8AA3-1FEC7716735E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mbrit.StreetFoo.Tests", "Mbrit.StreetFoo.Tests\Mbrit.StreetFoo.Tests.csproj", "{6BD0F115-0B6F-4EFC-A68B-B8F49C2B104A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D973BDE9-3A00-4E80-9F76-69F747FB6375}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		Mbrit.StreetFoo.vsmdi = Mbrit.StreetFoo.vsmdi
+		lib\MongoDB.Bson.dll = lib\MongoDB.Bson.dll
+		lib\MongoDB.Driver.dll = lib\MongoDB.Driver.dll
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mbrit.StreetFoo.Web", "Mbrit.StreetFoo.Web\Mbrit.StreetFoo.Web.csproj", "{0F6AAB2E-4EC7-423E-99E6-F519FC5E5B7C}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Mbrit.StreetFoo.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B5A217A-001C-4BE7-8AA3-1FEC7716735E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5A217A-001C-4BE7-8AA3-1FEC7716735E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5A217A-001C-4BE7-8AA3-1FEC7716735E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5A217A-001C-4BE7-8AA3-1FEC7716735E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BD0F115-0B6F-4EFC-A68B-B8F49C2B104A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD0F115-0B6F-4EFC-A68B-B8F49C2B104A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD0F115-0B6F-4EFC-A68B-B8F49C2B104A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD0F115-0B6F-4EFC-A68B-B8F49C2B104A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F6AAB2E-4EC7-423E-99E6-F519FC5E5B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F6AAB2E-4EC7-423E-99E6-F519FC5E5B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F6AAB2E-4EC7-423E-99E6-F519FC5E5B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F6AAB2E-4EC7-423E-99E6-F519FC5E5B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
