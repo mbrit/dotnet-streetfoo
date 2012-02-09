@@ -38,7 +38,6 @@ namespace Mbrit.StreetFoo.Web
                 output["isOk"] = false;
                 output["error"] = "General failure.";
                 output["generalFailure"] = ex.ToString();
-                context.Response.StatusCode = 500;
             }
 
             // send...
