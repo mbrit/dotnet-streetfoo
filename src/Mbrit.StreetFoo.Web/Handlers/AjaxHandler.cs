@@ -29,7 +29,17 @@ namespace Mbrit.StreetFoo.Web
             // load...
             JsonData input = new JsonData(json);
             JsonData output = new JsonData();
-            DoRequest(input, output);
+            try
+            {
+                DoRequest(input, output);
+            }
+            catch(Exception ex)
+            {
+                output["isOk"] = false;
+                output["error"] = "General failure.";
+                output["generalFailure"] = ex.ToString();
+                context.Response.StatusCode = 500;
+            }
 
             // send...
             context.Response.ContentType = "text/json";
