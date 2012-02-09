@@ -21,6 +21,8 @@ namespace Mbrit.StreetFoo.Tests
             // go...
             HandleRegister handler = new HandleRegister();
             JsonData output = new JsonData();
+
+
             handler.DoRequest(input, output);
 
             // check...
