@@ -20,16 +20,23 @@ namespace Mbrit.StreetFoo.Entities
 
             using (MongoWrapped db = FooRuntime.GetDatabase())
             {
-                MongoCollection<ApiUser> users = db.GetCollection<ApiUser>();
+                try
+                {
+                    MongoCollection<ApiUser> users = db.GetCollection<ApiUser>();
 
-                // create...
-                ApiUser user = new ApiUser();
-                user.ApiKey = apiKey;
-                user.CreatedUtc = DateTime.UtcNow;
-                users.Insert(user);
+                    // create...
+                    ApiUser user = new ApiUser();
+                    user.ApiKey = apiKey;
+                    user.CreatedUtc = DateTime.UtcNow;
+                    users.Insert(user);
 
-                // return..
-                return user;
+                    // return..
+                    return user;
+                }
+                catch (Exception ex)
+                {
+                    throw db.WrapError(ex);
+                }
             }
         }
     }

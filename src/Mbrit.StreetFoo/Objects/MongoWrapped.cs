@@ -9,6 +9,8 @@ namespace Mbrit.StreetFoo
 {
     internal class MongoWrapped : IDisposable
     {
+        private string ConnectionString { get; set; }
+        private string DatabaseName { get; set; }
         private MongoServer Server { get; set; }
         internal MongoDatabase Database { get; set; }
 
@@ -26,7 +28,7 @@ namespace Mbrit.StreetFoo
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException(string.Format("Failed to connect to database.\r\nURL: {0}\r\nDatabase: {1}", connString, databaseName), ex);
+                throw WrapError(ex);
             }
         }
 
@@ -63,6 +65,12 @@ namespace Mbrit.StreetFoo
             where T : Entity
         {
             return typeof(T).Name;
+        }
+
+        internal Exception WrapError(Exception ex)
+        {
+            return new InvalidOperationException(string.Format("Failed to issue Mongo instruction.\r\nURL: {0}\r\nDatabase: {1}",
+                this.ConnectionString, this.DatabaseName), ex);
         }
     }
 }
