@@ -14,13 +14,20 @@ namespace Mbrit.StreetFoo
 
         internal MongoWrapped(string connString, string databaseName)
         {
-            this.Server = MongoServer.Create(connString);
-            this.Server.Connect();
+            try
+            {
+                this.Server = MongoServer.Create(connString);
+                this.Server.Connect();
 
-            // get...
-            this.Database = this.Server.GetDatabase(databaseName);
-            if (this.Database == null)
-                throw new InvalidOperationException(string.Format("A database with name '{0}' was not found.", databaseName));
+                // get...
+                this.Database = this.Server.GetDatabase(databaseName);
+                if (this.Database == null)
+                    throw new InvalidOperationException(string.Format("A database with name '{0}' was not found.", databaseName));
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException(string.Format("Failed to connect to database.\r\nURL: {0}\r\nDatabase: {1}", connString, databaseName), ex);
+            }
         }
 
         ~MongoWrapped()
