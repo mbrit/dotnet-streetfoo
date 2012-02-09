@@ -22,7 +22,7 @@ namespace Mbrit.StreetFoo.Tests
         {
             // if...
             if (!(FooRuntime.IsStarted))
-                FooRuntime.Start("mongodb://StreetFooUser:8o9sK3X52F76jo68bPlR3nlD3E1224@staff.mongohq.com:10059/StreetFooTest");
+                FooRuntime.Start("mongodb://StreetFooTestUser:8o9sK3X52F76jo68bPlR3nlD3E1224@staff.mongohq.com:10059/StreetFooTest");
         }
 
         internal string GetRandomId(string name)
