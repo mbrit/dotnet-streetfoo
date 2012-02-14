@@ -11,7 +11,24 @@ namespace Mbrit.StreetFoo.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.GetNewCode();
+        }
 
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+
+            this.buttonRefresh.Click += new EventHandler(buttonRefresh_Click);
+        }
+
+        void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            this.GetNewCode();
+        }
+
+        private void GetNewCode()
+        {
+            this.textGuid.Text = Guid.NewGuid().ToString();
         }
     }
 }

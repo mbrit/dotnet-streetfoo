@@ -4,11 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>StreetFoo</title>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
+        <h1>StreetFoo Web Service</h1>
+        See <a href="http://https://github.com/mbrit/dotnet-streetfoo">https://github.com/mbrit/dotnet-streetfoo</a>.
+        <br /><br />
+        New API key: <asp:TextBox runat="server" ID="textGuid" Width="300px"></asp:TextBox> <asp:Button runat="server" ID="buttonRefresh" Text="Another Code" />
     </div>
     </form>
 </body>
