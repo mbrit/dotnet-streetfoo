@@ -34,7 +34,7 @@ namespace Mbrit.StreetFoo.Web.Handlers
                         throw new InvalidOperationException("'user' is null.");
 
                     // set...
-                    output["userId"] = user._id;
+                    output["userId"] = user._id.ToString();
                 }
                 else
                     validator.AddError("Username already in use.");
