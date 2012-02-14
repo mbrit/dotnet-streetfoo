@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MongoDB.Driver;
 using Mbrit.StreetFoo.Entities;
+using System.Text.RegularExpressions;
 
 namespace Mbrit.StreetFoo
 {
@@ -13,6 +14,8 @@ namespace Mbrit.StreetFoo
         private string DatabaseName { get; set; }
         private MongoServer Server { get; set; }
         internal MongoDatabase Database { get; set; }
+
+        private static Regex PasswordRegex = new Regex(@"(?<before>mongodb://[^:]+:)(?<password>[^@]+)(?<after>.*)", RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
         internal MongoWrapped(string connString, string databaseName)
         {
@@ -73,7 +76,17 @@ namespace Mbrit.StreetFoo
         internal Exception WrapError(Exception ex)
         {
             return new InvalidOperationException(string.Format("Failed to issue Mongo instruction.\r\nURL: {0}\r\nDatabase: {1}",
-                this.ConnectionString, this.DatabaseName), ex);
+                StripPassword(this.ConnectionString), this.DatabaseName), ex);
+        }
+
+        private string StripPassword(string url)
+        {
+            return PasswordRegex.Replace(url, new MatchEvaluator(PasswordEvaluator));
+        }
+
+        private string PasswordEvaluator(Match match)
+        {
+            return string.Concat(match.Groups["before"].Value, "***", match.Groups["after"].Value);
         }
     }
 }
