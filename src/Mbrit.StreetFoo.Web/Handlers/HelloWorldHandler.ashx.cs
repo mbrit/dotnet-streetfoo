@@ -7,7 +7,7 @@ namespace Mbrit.StreetFoo.Web.Handlers
 {
     public class HelloWorldHandler : AjaxHandler
     {
-        protected override void DoRequest(Entities.ApiUser api, JsonData input, JsonData output)
+        protected override void DoRequest(AjaxContext context, JsonData input, JsonData output)
         {
             // get...
             string name = input.GetValueAsString("name");

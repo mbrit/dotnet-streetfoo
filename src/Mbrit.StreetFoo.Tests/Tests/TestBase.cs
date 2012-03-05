@@ -7,15 +7,17 @@ using NUnit.Framework;
 
 namespace Mbrit.StreetFoo.Tests
 {
-    public abstract class TestBase
+    public abstract class TestBase : IApiUserSource
     {
         public static Random Random { get; set; }
+        public ApiUser ApiUser { get; private set; }
         private static ApiUser MockApiUser { get; set; }
         internal Creator Creator { get; private set; }
 
         protected TestBase()
         {
             this.Creator = new Creator(this);
+            this.ApiUser = MockApiUser;
         }
 
         static TestBase()
@@ -46,14 +48,6 @@ namespace Mbrit.StreetFoo.Tests
             return builder.ToString();
         }
 
-        protected ApiUser ApiUser
-        {
-            get
-            {
-                return MockApiUser;
-            }
-        }
-
         protected string ApiKey
         {
             get
@@ -62,9 +56,52 @@ namespace Mbrit.StreetFoo.Tests
             }
         }
 
+        protected JsonData CreateJsonData(bool logonUser = true)
+        {
+            if (logonUser)
+            {
+                User user = this.Creator.CreateUser();
+                return this.CreateJsonData(user);
+            }
+            else
+                return this.CreateJsonData(null);
+        }
+
+        protected JsonData CreateJsonData(User user)
+        {
+            JsonData input = new JsonData();
+            this.ApplyApiKey(input);
+            if (user != null)
+                this.ApplyLogonToken(input, user);
+
+            return input;
+        }
+
         protected void ApplyApiKey(JsonData input)
         {
             input["apiKey"] = ApiKey;
+        }
+
+        protected void ApplyLogonToken(JsonData input)
+        {
+            User user = this.Creator.CreateUser();
+            this.ApplyLogonToken(input, user);
+        }
+
+        protected void ApplyLogonToken(JsonData input, User user)
+        {
+            Token token = Token.CreateToken(this, user);
+            if (token == null)
+                throw new InvalidOperationException("'token' is null.");
+
+            input["logonToken"] = token.TheToken;
+        }
+
+        protected void ResetReports()
+        {
+            IEnumerable<Report> reports = Report.GetAll(this);
+            foreach (Report report in reports)
+                report.DeleteReport(this);
         }
     }
 }

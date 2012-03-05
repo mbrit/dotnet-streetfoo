@@ -11,11 +11,8 @@ namespace Mbrit.StreetFoo.Web.Handlers
     /// </summary>
     public class HandleRegister : AjaxHandler
     {
-        protected override void DoRequest(ApiUser api, JsonData input, JsonData output)
+        protected override void DoRequest(AjaxContext context, JsonData input, JsonData output)
         {
-            if(api == null)
-	            throw new ArgumentNullException("api");
-
             // get...
             AjaxValidator validator = new AjaxValidator();
             string username = validator.GetRequiredString(input, "username");
@@ -26,10 +23,10 @@ namespace Mbrit.StreetFoo.Web.Handlers
             if (validator.IsOk)
             {
                 // get...
-                User user = User.GetByUsername(api, username);
+                User user = User.GetByUsername(context, username);
                 if (user == null)
                 {
-                    user = User.CreateUser(api, username, email, password);
+                    user = User.CreateUser(context, username, email, password);
                     if (user == null)
                         throw new InvalidOperationException("'user' is null.");
 

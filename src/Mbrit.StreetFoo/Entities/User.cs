@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System.Security.Cryptography;
 
@@ -10,24 +11,33 @@ namespace Mbrit.StreetFoo.Entities
 {
     public class User : ApiBoundEntity
     {
+        [BsonElement(UsernameKey)]
         public string Username { get; set; }
+
+        [BsonElement("email")]
         public string Email { get; set; }
+
+        [BsonElement("passwordSalt")]
         public byte[] PasswordSalt { get; set; }
+
+        [BsonElement("passwordHash")]
         public byte[] PasswordHash { get; set; }
 
-        public static User GetByUsername(ApiUser api, string username)
+        private const string UsernameKey = "username";
+
+        public static User GetByUsername(IApiUserSource api, string username)
         {
             using (MongoConnection db = FooRuntime.GetDatabase())
             {
                 QueryDocument query = new QueryDocument();
-                query.Add("ApiKey", api.ApiKey);
-                query.Add("Username", username);
+                query.AddApiConstraint(api);
+                query.Add(UsernameKey, username);
 
                 return db.GetCollection<User>().FindOne(query);
             }
         }
 
-        public static User CreateUser(ApiUser api, string username, string email, string password)
+        public static User CreateUser(IApiUserSource api, string username, string email, string password)
         {
             User user = new User();
             user.SetApi(api);
@@ -62,6 +72,45 @@ namespace Mbrit.StreetFoo.Entities
             // get...
             byte[] hash = deriveBytes.GetBytes(20);  // derive a 20-byte key
             return hash.SequenceEqual(this.PasswordHash);
+        }
+
+        public static User GetById(IApiUserSource api, ObjectId userId, bool throwIfNotFound)
+        {
+            using (MongoConnection db = FooRuntime.GetDatabase())
+            {
+                QueryDocument query = new QueryDocument();
+                query.AddApiConstraint(api);
+                query.Add(IdKey, userId);
+
+                User user = db.GetCollection<User>().FindOne(query);
+                if (user != null)
+                    return user;
+                else
+                {
+                    if (throwIfNotFound)
+                        throw new InvalidOperationException(string.Format("A user with ID '{0}' was not found.", userId));
+                    else
+                        return null;
+                }
+            }
+        }
+
+        public IEnumerable<Report> GetReports(IApiUserSource api)
+        {
+            return Report.GetByUser(api, this);
+        }
+
+        public bool HasReports(IApiUserSource api)
+        {
+            using (MongoConnection db = FooRuntime.GetDatabase())
+            {
+                QueryDocument query = new QueryDocument();
+                query.AddApiConstraint(api);
+                query.Add("ownerUserId", this._id);
+
+                Report report = db.GetCollection<Report>().FindOne(query);
+                return report != null;
+            }
         }
     }
 }

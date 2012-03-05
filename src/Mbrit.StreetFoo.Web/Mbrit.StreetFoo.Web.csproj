@@ -80,8 +80,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\AjaxContext.cs" />
     <Compile Include="Handlers\AjaxHandler.cs" />
     <Compile Include="Handlers\AjaxValidator.cs" />
+    <Compile Include="Handlers\HandleCreateReport.ashx.cs">
+      <DependentUpon>HandleCreateReport.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\HandleEnsureTestReports.ashx.cs">
+      <DependentUpon>HandleEnsureTestReports.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\HandleGetReportsByUser.ashx.cs">
+      <DependentUpon>HandleGetReportsByUser.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\HandleLogon.ashx.cs">
       <DependentUpon>HandleLogon.ashx</DependentUpon>
     </Compile>
@@ -111,6 +121,15 @@
   <ItemGroup>
     <Content Include="Handlers\HelloWorldHandler.ashx" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handlers\HandleCreateReport.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handlers\HandleGetReportsByUser.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handlers\HandleEnsureTestReports.ashx" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
@@ -119,7 +138,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5799</DevelopmentServerPort>
+          <DevelopmentServerPort>54443</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -13,24 +13,6 @@ namespace Mbrit.StreetFoo.Tests
     public class UserTests : TestBase
     {
         [Test()]
-        public void TestHelloWorld()
-        {
-            JsonData input = new JsonData();
-            ApplyApiKey(input);
-            input["name"] = "Martha";
-
-            // run...
-            HelloWorldHandler handler = new HelloWorldHandler();
-            JsonData output = new JsonData();
-            handler.DoRequest(input, output);
-
-            // dump...
-            string result = output.GetValueAsString("result");
-            Console.WriteLine(result);
-            Assert.AreEqual("Hello, Martha.", result);
-        }
-
-        // [test()]
         public void TestHandleRegister()
         {
             JsonData input = new JsonData();
@@ -50,8 +32,8 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNotNull(output["userId"]);
         }
 
-        // [test()]
-        public void TextHandleRegisterExisingFails()
+        [Test()]
+        public void TextHandleRegisterExistingFails()
         {
             JsonData input = new JsonData();
             ApplyApiKey(input);
@@ -74,7 +56,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["userId"]);
         }
 
-        // [test()]
+        [Test()]
         public void TestHandleRegisterMissingFields()
         {
             JsonData input = new JsonData();
@@ -93,12 +75,12 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["userId"]);
         }
 
-        // [test()]
+        [Test()]
         public void TestLogonOk()
         {
             // create a user...
             string password = this.GetRandomId("password");
-            User user = this.Creator.CreateUserWithPassword(this.ApiUser, password);
+            User user = this.Creator.CreateUserWithPassword(password);
 
             // go...
             JsonData input = new JsonData();
@@ -117,12 +99,12 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNotNull(output["token"]);
         }
 
-        // [test()]
+        [Test()]
         public void TestLogonInvalidUser()
         {
             // create a user...
             string password = this.GetRandomId("password");
-            User user = this.Creator.CreateUserWithPassword(this.ApiUser, password);
+            User user = this.Creator.CreateUserWithPassword(password);
 
             // go...
             JsonData input = new JsonData();
@@ -141,12 +123,12 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["token"]);
         }
 
-        // [test()]
+        [Test()]
         public void TestLogonInvalidPassword()
         {
             // create a user...
             string password = this.GetRandomId("password");
-            User user = this.Creator.CreateUserWithPassword(this.ApiUser, password);
+            User user = this.Creator.CreateUserWithPassword(password);
 
             // go...
             JsonData input = new JsonData();

@@ -51,12 +51,15 @@
   <ItemGroup>
     <Compile Include="Entities\ApiBoundEntity.cs" />
     <Compile Include="Entities\ApiUser.cs" />
+    <Compile Include="Entities\IApiUserSource.cs" />
+    <Compile Include="Entities\Report.cs" />
     <Compile Include="Entities\Token.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Objects\FooRuntime.cs" />
     <Compile Include="Objects\JsonData.cs" />
     <Compile Include="Objects\MongoWrapped.cs" />
+    <Compile Include="Objects\QueryDocumentExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

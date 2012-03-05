@@ -11,7 +11,7 @@ namespace Mbrit.StreetFoo.Web.Handlers
     /// </summary>
     public class HandleLogon : AjaxHandler
     {
-        protected override void DoRequest(ApiUser api, JsonData input, JsonData output)
+        protected override void DoRequest(AjaxContext context, JsonData input, JsonData output)
         {
             // get...
             AjaxValidator validator = new AjaxValidator();
@@ -22,14 +22,14 @@ namespace Mbrit.StreetFoo.Web.Handlers
             if (validator.IsOk)
             {
                 // get...
-                User user = User.GetByUsername(api, username);
+                User user = User.GetByUsername(context, username);
                 if (user != null)
                 {
                     // check...
                     if (user.CheckPassword(password))
                     {
                         // create an access token...
-                        Token token = Token.CreateToken(api);
+                        Token token = Token.CreateToken(context, user);
                         if (token == null)
                             throw new InvalidOperationException("'token' is null.");
 

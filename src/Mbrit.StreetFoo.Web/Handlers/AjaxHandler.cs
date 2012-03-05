@@ -32,6 +32,10 @@ namespace Mbrit.StreetFoo.Web
             try
             {
                 DoRequest(input, output);
+
+                // did we get output?
+                if (!(output.ContainsKey("isOk")))
+                    output["isOk"] = true;
             }
             catch(Exception ex)
             {
@@ -51,18 +55,10 @@ namespace Mbrit.StreetFoo.Web
 
         public void DoRequest(JsonData input, JsonData output)
         {
-            // check the api...
-            string apiKey = input.GetValueAsString("apiKey");
-            if (string.IsNullOrEmpty(apiKey))
-                throw new InvalidOperationException("The 'apiKey' value was not specified in the request.");
-            ApiUser api = ApiUser.GetOrCreateApiUser(new Guid(apiKey));
-            if (api == null)
-                throw new InvalidOperationException("'api' is null.");
-
-            // go...
-            this.DoRequest(api, input, output);
+            AjaxContext context = new AjaxContext(input);
+            this.DoRequest(context, input, output);
         }
-
-        protected abstract void DoRequest(ApiUser api, JsonData input, JsonData output);
+  
+        protected abstract void DoRequest(AjaxContext context, JsonData input, JsonData output);
     }
 }
