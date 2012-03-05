@@ -40,6 +40,10 @@ namespace Mbrit.StreetFoo.Web
                 output["generalFailure"] = ex.ToString();
             }
 
+            // jqm access control bits...
+            context.Response.AddHeader("Access-Control-Allow-Origin", "*");
+            context.Response.AddHeader("Access-Control-Allow-Methods", "POST, GET");
+
             // send...
             context.Response.ContentType = "text/json";
             context.Response.Write(output.ToString());

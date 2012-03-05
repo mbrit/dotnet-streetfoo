@@ -13,7 +13,7 @@ namespace Mbrit.StreetFoo.Entities
 
         public static ApiUser GetOrCreateApiUser(Guid apiKey)
         {
-            using (MongoWrapped db = FooRuntime.GetDatabase())
+            using (MongoConnection db = FooRuntime.GetDatabase())
             {
                 try
                 {

@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace Mbrit.StreetFoo
 {
-    internal class MongoWrapped : IDisposable
+    internal class MongoConnection : IDisposable
     {
         private string ConnectionString { get; set; }
         private string DatabaseName { get; set; }
@@ -17,7 +17,7 @@ namespace Mbrit.StreetFoo
 
         private static Regex PasswordRegex = new Regex(@"(?<before>mongodb://[^:]+:)(?<password>[^@]+)(?<after>.*)", RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
-        internal MongoWrapped(string connString, string databaseName)
+        internal MongoConnection(string connString, string databaseName)
         {
             this.ConnectionString = connString;
             this.DatabaseName = databaseName;
@@ -38,7 +38,7 @@ namespace Mbrit.StreetFoo
             }
         }
 
-        ~MongoWrapped()
+        ~MongoConnection()
         {
             this.Dispose();
         }

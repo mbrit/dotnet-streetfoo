@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using Mbrit.StreetFoo.Web.Handlers;
 using Mbrit.StreetFoo.Entities;
-using NUnit.Framework;
-using System.Diagnostics;
 
 namespace Mbrit.StreetFoo.Tests
 {
@@ -13,24 +11,6 @@ namespace Mbrit.StreetFoo.Tests
     public class UserTests : TestBase
     {
         [Test()]
-        public void TestHelloWorld()
-        {
-            JsonData input = new JsonData();
-            ApplyApiKey(input);
-            input["name"] = "Martha";
-
-            // run...
-            HelloWorldHandler handler = new HelloWorldHandler();
-            JsonData output = new JsonData();
-            handler.DoRequest(input, output);
-
-            // dump...
-            string result = output.GetValueAsString("result");
-            Console.WriteLine(result);
-            Assert.AreEqual("Hello, Martha.", result);
-        }
-
-        // [test()]
         public void TestHandleRegister()
         {
             JsonData input = new JsonData();
@@ -50,7 +30,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNotNull(output["userId"]);
         }
 
-        // [test()]
+        [Test()]
         public void TextHandleRegisterExisingFails()
         {
             JsonData input = new JsonData();
@@ -74,7 +54,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["userId"]);
         }
 
-        // [test()]
+        [Test()]
         public void TestHandleRegisterMissingFields()
         {
             JsonData input = new JsonData();
@@ -93,7 +73,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["userId"]);
         }
 
-        // [test()]
+        [Test()]
         public void TestLogonOk()
         {
             // create a user...
@@ -117,7 +97,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNotNull(output["token"]);
         }
 
-        // [test()]
+        [Test()]
         public void TestLogonInvalidUser()
         {
             // create a user...
@@ -141,7 +121,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["token"]);
         }
 
-        // [test()]
+        [Test()]
         public void TestLogonInvalidPassword()
         {
             // create a user...

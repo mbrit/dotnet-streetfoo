@@ -19,7 +19,7 @@ namespace Mbrit.StreetFoo.Entities
             item.TheToken = Guid.NewGuid();
 
             // save...
-            using (MongoWrapped db = FooRuntime.GetDatabase())
+            using (MongoConnection db = FooRuntime.GetDatabase())
                 db.GetCollection<Token>().Insert(item);
 
             // return...

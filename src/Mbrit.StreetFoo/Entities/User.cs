@@ -17,7 +17,7 @@ namespace Mbrit.StreetFoo.Entities
 
         public static User GetByUsername(ApiUser api, string username)
         {
-            using (MongoWrapped db = FooRuntime.GetDatabase())
+            using (MongoConnection db = FooRuntime.GetDatabase())
             {
                 QueryDocument query = new QueryDocument();
                 query.Add("ApiKey", api.ApiKey);
@@ -36,7 +36,7 @@ namespace Mbrit.StreetFoo.Entities
             user.SetPassword(password);
             
             // dump...
-            using (MongoWrapped db = FooRuntime.GetDatabase())
+            using (MongoConnection db = FooRuntime.GetDatabase())
                 db.GetCollection<User>().Insert(user);
 
             // return...

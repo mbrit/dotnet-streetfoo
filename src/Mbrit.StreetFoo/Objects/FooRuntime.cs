@@ -43,9 +43,9 @@ namespace Mbrit.StreetFoo
             }
         }
 
-        internal static MongoWrapped GetDatabase()
+        internal static MongoConnection GetDatabase()
         {
-            return new MongoWrapped(ConnectionUrl, DatabaseName);
+            return new MongoConnection(ConnectionUrl, DatabaseName);
         }
     }
 }

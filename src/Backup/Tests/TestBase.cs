@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Mbrit.StreetFoo.Entities;
-using NUnit.Framework;
 
 namespace Mbrit.StreetFoo.Tests
 {
@@ -26,7 +25,7 @@ namespace Mbrit.StreetFoo.Tests
             MockApiUser = ApiUser.CreateMockApiUser();
         }
 
-        [SetUp()]
+        [TestInitialize()]
         public void Initialize()
         {
             // if...
