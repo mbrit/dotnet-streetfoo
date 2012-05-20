@@ -106,10 +106,13 @@ namespace Mbrit.StreetFoo
             return results;
         }
 
-        public string GetValueAsString(string name)
+        public T GetValueSafe<T>(string name)
         {
             object value = this[name];
-            return Convert.ToString(value);
+            if (value != null)
+                return (T)Convert.ChangeType(value, typeof(T));
+            else
+                return default(T);
         }
     }
 }

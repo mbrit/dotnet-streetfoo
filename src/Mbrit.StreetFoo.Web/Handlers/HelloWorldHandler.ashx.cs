@@ -10,7 +10,7 @@ namespace Mbrit.StreetFoo.Web.Handlers
         protected override void DoRequest(AjaxContext context, JsonData input, JsonData output)
         {
             // get...
-            string name = input.GetValueAsString("name");
+            string name = input.GetValueSafe<string>("name");
 
             // return...
             output["result"] = string.Format("Hello, {0}.", name);

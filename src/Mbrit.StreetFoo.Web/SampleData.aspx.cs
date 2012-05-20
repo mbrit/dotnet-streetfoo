@@ -50,7 +50,7 @@ namespace Mbrit.StreetFoo.Web
             Entities.User user = Entities.User.GetByUsername(api, username);
             if(user == null)
             {
-                this.labelMessage.Text = "The user '{0}' could not be found.";
+                this.labelMessage.Text = string.Format("The user '{0}' could not be found.", username);
                 return;
             }
 
@@ -65,7 +65,10 @@ namespace Mbrit.StreetFoo.Web
             handler.DoRequest(input, output);
 
             // ok...
-            this.labelMessage.Text = output.GetValueAsString("isOk");
+            if (output.GetValueSafe<bool>("isOk")) 
+                this.labelMessage.Text = string.Format("Sample data is available for '{0}'.", username);
+            else
+                this.labelMessage.Text = output.GetValueSafe<string>("error");
         }
     }
 }

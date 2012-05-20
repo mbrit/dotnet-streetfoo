@@ -15,7 +15,7 @@ namespace Mbrit.StreetFoo.Web
         internal AjaxContext(JsonData input)
         {
             // get the api out...
-            string apiKey = input.GetValueAsString("apiKey");
+            string apiKey = input.GetValueSafe<string>("apiKey");
             if (string.IsNullOrEmpty(apiKey))
                 throw new InvalidOperationException("The 'apiKey' value was not specified in the request.");
             this.ApiUser = ApiUser.GetOrCreateApiUser(new Guid(apiKey));
@@ -23,7 +23,7 @@ namespace Mbrit.StreetFoo.Web
 	            throw new InvalidOperationException("'ApiUser' is null.");
 
             // do we have a logon token?
-            string asString = input.GetValueAsString("logonToken");
+            string asString = input.GetValueSafe<string>("logonToken");
             if (!(string.IsNullOrEmpty(asString)))
             {
                 Token token = Token.GetByToken(this.ApiUser, asString);
