@@ -110,7 +110,15 @@ namespace Mbrit.StreetFoo
         {
             object value = this[name];
             if (value != null)
-                return (T)Convert.ChangeType(value, typeof(T));
+            {
+                if (typeof(string).IsAssignableFrom(typeof(T)))
+                    value = value.ToString();
+                else
+                    value = Convert.ChangeType(value, typeof(T));
+                
+                // return...
+                return (T)value;
+            }
             else
                 return default(T);
         }
