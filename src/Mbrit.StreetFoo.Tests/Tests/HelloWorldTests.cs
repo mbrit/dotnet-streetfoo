@@ -23,7 +23,7 @@ namespace Mbrit.StreetFoo.Tests
             handler.DoRequest(input, output);
 
             // dump...
-            string result = output.GetValueAsString("result");
+            string result = output.GetValueSafe<string>("result");
             Console.WriteLine(result);
             Assert.AreEqual("Hello, Martha.", result);
         }

@@ -51,7 +51,7 @@ namespace Mbrit.StreetFoo.Tests
             handler.DoRequest(this.CreateJsonData(user), output);
 
             // check...
-            string asString = output.GetValueAsString("reports");
+            string asString = output.GetValueSafe<string>("reports");
             IList reports = (IList)new JavaScriptSerializer().DeserializeObject(asString);
             Assert.AreEqual(5, reports.Count);
 
@@ -85,7 +85,7 @@ namespace Mbrit.StreetFoo.Tests
             handler.DoRequest(this.CreateJsonData(user), output);
 
             // check...
-            string asString = output.GetValueAsString("reports");
+            string asString = output.GetValueSafe<string>("reports");
             IList reports = (IList)new JavaScriptSerializer().DeserializeObject(asString);
             Assert.AreEqual(50, reports.Count);
         }
