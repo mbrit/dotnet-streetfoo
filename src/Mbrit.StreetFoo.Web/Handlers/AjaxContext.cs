@@ -45,7 +45,7 @@ namespace Mbrit.StreetFoo.Web
                 if (_user == null)
                 {
                     if (this.Token == null)
-                        throw new InvalidOperationException("A user token was not supplied.");
+                        throw new InvalidOperationException("A logon token ('logonToken') was not supplied.");
 
                     // get...
                     _user = User.GetById(this.ApiUser, this.Token.UserId, true);

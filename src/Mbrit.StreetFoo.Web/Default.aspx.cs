@@ -19,6 +19,12 @@ namespace Mbrit.StreetFoo.Web
             base.OnInit(e);
 
             this.buttonRefresh.Click += new EventHandler(buttonRefresh_Click);
+            this.buttonCreateSampleData.Click += new EventHandler(buttonCreateSampleData_Click);
+        }
+
+        void buttonCreateSampleData_Click(object sender, EventArgs e)
+        {
+            this.Response.Redirect("~/SampleData.aspx");
         }
 
         void buttonRefresh_Click(object sender, EventArgs e)

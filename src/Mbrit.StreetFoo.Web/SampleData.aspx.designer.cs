@@ -10,33 +10,42 @@
 namespace Mbrit.StreetFoo.Web {
     
     
-    public partial class _Default {
+    public partial class SampleData {
         
         /// <summary>
-        /// textGuid control.
+        /// textApiKey control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textGuid;
+        protected global::System.Web.UI.WebControls.TextBox textApiKey;
         
         /// <summary>
-        /// buttonRefresh control.
+        /// textUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button buttonRefresh;
+        protected global::System.Web.UI.WebControls.TextBox textUsername;
         
         /// <summary>
-        /// buttonCreateSampleData control.
+        /// buttonEnsureSampleData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button buttonCreateSampleData;
+        protected global::System.Web.UI.WebControls.Button buttonEnsureSampleData;
+        
+        /// <summary>
+        /// labelMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelMessage;
     }
 }

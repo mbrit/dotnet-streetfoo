@@ -58,6 +58,7 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="SampleData.aspx" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
@@ -101,7 +102,21 @@
     <Compile Include="Handlers\HelloWorldHandler.ashx.cs">
       <DependentUpon>HelloWorldHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Masters\Master.Master.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Masters\Master.Master.designer.cs">
+      <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleData.aspx.cs">
+      <DependentUpon>SampleData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleData.aspx.designer.cs">
+      <DependentUpon>SampleData.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -129,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Handlers\HandleEnsureTestReports.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Masters\Master.Master" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
