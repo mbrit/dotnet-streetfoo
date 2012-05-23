@@ -18,6 +18,14 @@ namespace Mbrit.StreetFoo.Web.Handlers
             string username = validator.GetRequiredString(input, "username");
             string email = validator.GetRequiredString(input, "email");
             string password = validator.GetRequiredString(input, "password");
+            string confirm = validator.GetRequiredString(input, "confirm");
+
+            // check...
+            if (validator.IsOk)
+            {
+                if (!(string.IsNullOrEmpty(password)) && password != confirm)
+                    validator.AddError("Passwords do not match.");
+            }
 
             // ok?
             if (validator.IsOk)
