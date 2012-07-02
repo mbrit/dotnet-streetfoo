@@ -62,6 +62,13 @@
     <Compile Include="Objects\QueryDocumentExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Graffiti01.jpg" />
+    <EmbeddedResource Include="Resources\Graffiti02.jpg" />
+    <EmbeddedResource Include="Resources\Graffiti03.jpg" />
+    <EmbeddedResource Include="Resources\Graffiti04.jpg" />
+    <EmbeddedResource Include="Resources\Graffiti05.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

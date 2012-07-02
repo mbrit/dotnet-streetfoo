@@ -7,14 +7,14 @@ using System.Diagnostics;
 using System.Web.Script.Serialization;
 using Mbrit.StreetFoo.Web.Handlers;
 using Mbrit.StreetFoo.Entities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Mbrit.StreetFoo.Tests
 {
-    [TestClass]
+    [TestFixture()]
     public class ReportTests : TestBase
     {
-        [TestMethod]
+        [Test()]
         public void TestCreateReport()
         {
             JsonData input = CreateJsonData();
@@ -32,7 +32,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNotNull(output["reportId"]);
         }
 
-        [TestMethod]
+        [Test()]
         public void TestGetReportsByUser()
         {
             ResetReports();
@@ -68,7 +68,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.AreEqual(user.IdAsString, ((IDictionary)reports[4])["ownerUserId"]);
         }
 
-        [TestMethod]
+        [Test()]
         public void TestEnsureTestReports()
         {
             ResetReports();
@@ -88,23 +88,6 @@ namespace Mbrit.StreetFoo.Tests
             string asString = output.GetValueSafe<string>("reports");
             IList reports = (IList)new JavaScriptSerializer().DeserializeObject(asString);
             Assert.AreEqual(50, reports.Count);
-        }
-
-        [TestMethod]
-        public void TestGetReportImage()
-        {
-            var input = this.CreateJsonData();
-            input["nativeId"] = "4fb2a0e1e7044a92bc693ac5";
-            
-            // run...
-            var handler = new HandleGetReportImage();
-            var output = new JsonData();
-            handler.DoRequest(input, output);
-
-            // check...
-            Assert.AreEqual(true, output["isOk"]);
-            Assert.IsNull(output["error"]);
-            Assert.IsNotNull(output["image"]);
         }
     }
 }

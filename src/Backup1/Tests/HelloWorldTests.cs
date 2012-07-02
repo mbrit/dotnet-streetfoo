@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Mbrit.StreetFoo.Web.Handlers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Mbrit.StreetFoo.Tests
 {
-    [TestClass]
+    [TestFixture()]
     public class HelloWorldTests : TestBase
     {
-        [TestMethod]
+        [Test()]
         public void TestHelloWorld()
         {
             JsonData input = new JsonData();

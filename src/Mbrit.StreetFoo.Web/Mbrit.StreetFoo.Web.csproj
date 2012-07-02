@@ -90,6 +90,9 @@
     <Compile Include="Handlers\HandleEnsureTestReports.ashx.cs">
       <DependentUpon>HandleEnsureTestReports.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\HandleGetReportImage.ashx.cs">
+      <DependentUpon>HandleGetReportImage.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\HandleGetReportsByUser.ashx.cs">
       <DependentUpon>HandleGetReportsByUser.ashx</DependentUpon>
     </Compile>
@@ -147,6 +150,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Masters\Master.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Handlers\HandleGetReportImage.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -4,24 +4,22 @@ using System.Linq;
 using System.Text;
 using Mbrit.StreetFoo.Web.Handlers;
 using Mbrit.StreetFoo.Entities;
+using NUnit.Framework;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Mbrit.StreetFoo.Tests
 {
-    [TestClass]
+    [TestFixture()]
     public class UserTests : TestBase
     {
-        [TestMethod]
+        [Test()]
         public void TestHandleRegister()
         {
             JsonData input = new JsonData();
             ApplyApiKey(input);
             input["username"] = GetRandomId("user");
             input["email"] = GetRandomId("email");
-            var password = GetRandomId("password");
-            input["password"] = password;
-            input["confirm"] = password;
+            input["password"] = GetRandomId("password");
 
             // go...
             HandleRegister handler = new HandleRegister();
@@ -34,7 +32,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNotNull(output["userId"]);
         }
 
-        [TestMethod]
+        [Test()]
         public void TextHandleRegisterExistingFails()
         {
             JsonData input = new JsonData();
@@ -58,7 +56,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["userId"]);
         }
 
-        [TestMethod]
+        [Test()]
         public void TestHandleRegisterMissingFields()
         {
             JsonData input = new JsonData();
@@ -77,7 +75,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["userId"]);
         }
 
-        [TestMethod]
+        [Test()]
         public void TestLogonOk()
         {
             // create a user...
@@ -101,7 +99,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNotNull(output["token"]);
         }
 
-        [TestMethod]
+        [Test()]
         public void TestLogonInvalidUser()
         {
             // create a user...
@@ -125,7 +123,7 @@ namespace Mbrit.StreetFoo.Tests
             Assert.IsNull(output["token"]);
         }
 
-        [TestMethod]
+        [Test()]
         public void TestLogonInvalidPassword()
         {
             // create a user...
