@@ -67,7 +67,7 @@
     <EmbeddedResource Include="Resources\Graffiti02.jpg" />
     <EmbeddedResource Include="Resources\Graffiti03.jpg" />
     <EmbeddedResource Include="Resources\Graffiti04.jpg" />
-    <EmbeddedResource Include="Resources\Graffiti05.jpg" />
+    <EmbeddedResource Include="Resources\Graffiti00.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

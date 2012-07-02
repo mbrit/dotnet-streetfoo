@@ -23,7 +23,7 @@ namespace Mbrit.StreetFoo.Web.Handlers
                 string resourceName = string.Format("Mbrit.StreetFoo.Resources.Graffiti{0:d2}.jpg", asInt % 5);
                 var inStream = typeof(FooRuntime).Assembly.GetManifestResourceStream(resourceName);
                 if (inStream == null)
-                    throw new InvalidOperationException("'inStream' is null.");
+                    throw new InvalidOperationException(string.Format("A resource with name '{0}' was not found.", resourceName));
                 using (inStream)
                 {
                     using (var outStream = new MemoryStream())
