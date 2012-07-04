@@ -56,6 +56,21 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Mbrit.StreetFoo\Resources\Graffiti00.jpg">
+      <Link>Images\Graffiti00.jpg</Link>
+    </Content>
+    <Content Include="..\Mbrit.StreetFoo\Resources\Graffiti01.jpg">
+      <Link>Images\Graffiti01.jpg</Link>
+    </Content>
+    <Content Include="..\Mbrit.StreetFoo\Resources\Graffiti02.jpg">
+      <Link>Images\Graffiti02.jpg</Link>
+    </Content>
+    <Content Include="..\Mbrit.StreetFoo\Resources\Graffiti03.jpg">
+      <Link>Images\Graffiti03.jpg</Link>
+    </Content>
+    <Content Include="..\Mbrit.StreetFoo\Resources\Graffiti04.jpg">
+      <Link>Images\Graffiti04.jpg</Link>
+    </Content>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="SampleData.aspx" />
