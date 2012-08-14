@@ -12,6 +12,9 @@ namespace Mbrit.StreetFoo.Web.Handlers
     /// </summary>
     public class HandleEnsureTestReports : AjaxHandler
     {
+        private static List<decimal> Latitudes = new List<decimal> { 51.99065M };
+        private static List<decimal> Longitude = new List<decimal> { -0.75619M };
+
         protected override void DoRequest(AjaxContext context, JsonData input, JsonData output)
         {
             if (context.User == null)
@@ -40,7 +43,9 @@ namespace Mbrit.StreetFoo.Web.Handlers
                     string description = GetRandom(rand, lipsums);
 
                     // create...
-                    reports.Add(Report.CreateReport(context, context.User, title, description, 0, 0));
+                    decimal lat = Latitudes[0];
+                    decimal lng = Longitude[0];
+                    reports.Add(Report.CreateReport(context, context.User, title, description, lat, lng));
                 }
 
                 // return.. including fudged validator output...
