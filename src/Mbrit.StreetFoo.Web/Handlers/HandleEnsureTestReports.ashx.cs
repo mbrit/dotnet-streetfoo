@@ -12,8 +12,8 @@ namespace Mbrit.StreetFoo.Web.Handlers
     /// </summary>
     public class HandleEnsureTestReports : AjaxHandler
     {
-        private static List<decimal> Latitudes = new List<decimal> { 51.99065M };
-        private static List<decimal> Longitude = new List<decimal> { -0.75619M };
+        private static List<decimal> Latitudes = new List<decimal> { 52.03376M, 52.01451M, 52.03166M, 52.03344M, 52.03758M, 52.05996M, 51.99437M, 52.0169M, 52.00889M, 52.01431M, 52.03344M, 52.01578M, 52.02756M, 52.00695M, 52.03665M, 52.04247M, 52.03929M, 51.99648M, 52.02896M, 52.04098M, 52.04215M, 52.03882M, 52.03344M, 52.03882M, 51.99575M, 52.04295M, 51.99349M, 52.03712M, 51.99648M, 52.00552M, 52.03758M, 51.99498M, 52.01094M, 52.03751M, 52.04098M, 52.04098M, 51.99349M, 52.04098M, 52.03758M, 52.04098M, 52.03876M, 52.00826M, 52.01689M, 52.03958M, 52.04215M, 52.02896M, 52.04337M, 52.0407M, 52.03851M, 51.99437M };
+        private static List<decimal> Longitude = new List<decimal> { -0.78967M, -0.64742M, -0.73992M, -0.77065M, -0.76132M, -0.74576M, -0.72629M, -0.73312M, -0.73293M, -0.75462M, -0.77065M, -0.71594M, -0.72954M, -0.71953M, -0.76151M, -0.75099M, -0.75054M, -0.71591M, -0.75937M, -0.74714M, -0.75646M, -0.76321M, -0.77065M, -0.76321M, -0.75409M, -0.75592M, -0.73106M, -0.76081M, -0.71591M, -0.74695M, -0.76132M, -0.72722M, -0.70623M, -0.76247M, -0.74714M, -0.74714M, -0.73106M, -0.74714M, -0.76132M, -0.74714M, -0.75944M, -0.77114M, -0.76739M, -0.75241M, -0.75646M, -0.75937M, -0.74774M, -0.75494M, -0.77486M, -0.72629M };
 
         protected override void DoRequest(AjaxContext context, JsonData input, JsonData output)
         {
@@ -43,8 +43,8 @@ namespace Mbrit.StreetFoo.Web.Handlers
                     string description = GetRandom(rand, lipsums);
 
                     // create...
-                    decimal lat = Latitudes[0];
-                    decimal lng = Longitude[0];
+                    decimal lat = Latitudes[index];
+                    decimal lng = Longitude[index];
                     reports.Add(Report.CreateReport(context, context.User, title, description, lat, lng));
                 }
 
